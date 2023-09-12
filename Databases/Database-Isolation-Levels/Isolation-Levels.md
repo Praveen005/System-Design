@@ -116,8 +116,8 @@ Before transaction A is over(remember A isn’t over yet but in the meanwhile), 
 
 
 ##### In short:
-> Phantom Read: New row found/deleted in subsequent read.
-> Non - Repeatable Read: Data changed in subsequent read.
+> Phantom Read: New row found/deleted in subsequent read.<br>
+> Non - Repeatable Read: Data changed in subsequent read.<br>
 > Dirty Read: reading the uncommitted data.
 
 
@@ -126,8 +126,7 @@ Before transaction A is over(remember A isn’t over yet but in the meanwhile), 
 [PostresQL Doc](https://www.postgresql.org/docs/current/transaction-iso.html#:~:text=13.2.-,2.,transaction%20execution%20by%20concurrent%20transactions.)    
 [Stackoverflow](https://stackoverflow.com/questions/4034976/difference-between-read-commited-and-repeatable-read-in-sql-server)    
 [Wiki](https://en.wikipedia.org/wiki/Isolation_(database_systems))   
-[Write Skew](https://stackoverflow.com/questions/48417632/why-write-skew-can-happen-in-repeatable-reads)
-> The example explained in this StackOverflow answer has likely been taken from the Book [Designing Data-Intensive Applications](https://www.amazon.in/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/9352135245), check page 246/247.
+[Write Skew](https://stackoverflow.com/questions/48417632/why-write-skew-can-happen-in-repeatable-reads) The example explained in this StackOverflow answer has likely been taken from the Book [Designing Data-Intensive Applications](https://www.amazon.in/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/9352135245), check page 246/247.
 
 [Write Skew 2](https://vladmihalcea.com/a-beginners-guide-to-read-and-write-skew-phenomena/)
 
