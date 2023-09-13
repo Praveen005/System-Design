@@ -5,19 +5,19 @@
 > - In Relational Databases, data are stored in Rows or Columns.
 
 > - A Database should have the following properties:
-> > - Data Consistency
-> > - Data Durability
-> > - Data Integrity
-> > - Constraints
+> > - Data Consistency<br>
+> > - Data Durability<br>
+> > - Data Integrity<br>
+> > - Constraints<br>
 > > - Everything in one place
 
 > Most people use Relational Databases when they need transaction.
 > Transactions are the atomic unit of database.
 
-> - The reason relational databases are famous because they give ACID guarantees.
-> > A: Atomicity
-> > C: Consistency
-> > I: Isolation
+> - The reason relational databases are famous because they give **ACID** guarantees.
+> > A: Atomicity<br>
+> > C: Consistency<br>
+> > I: Isolation<br>
 > > D: Durability
 
 ##### Atomicity: 
