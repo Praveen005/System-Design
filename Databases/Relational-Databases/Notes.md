@@ -74,3 +74,17 @@
 > > > The data just can't vanish out of the blue.
 
 > > > The Relational Database gives you the guarantee, that when you commit any transaction, that commit is being written on the disk and it will be there no matter what.
+
+
+
+## Ways of replicating DB:
+
+1. Asynchronous Replication
+    1. Creating a Replica Using PerconaXtraBackup
+    2. Creating a Replica Using the Clone Plugin
+    3. Creating a Replica Using mysqldump
+    4. Creating a Replica Using mydumper and myloader
+    5. Group Replication
+
+2. Synchronous Replication
+    1. Galera/PXC Cluster
