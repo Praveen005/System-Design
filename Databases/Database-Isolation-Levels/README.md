@@ -11,7 +11,7 @@
 >
 > Check your current Database: `SELECT DATABASE();`
 >
-> Navigate to other database: `\u database-name`
+> Navigate to other database: `\u database-name` or `USE database-name`
 >
 > To check the current Isolation Level: `SELECT @@transaction_ISOLATION;`
 >
