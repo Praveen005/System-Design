@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  mysql-recipient:
+    image: mysql:latest
+    container_name: mysql-recipient
+    environment:
+      MYSQL_ROOT_PASSWORD: p123
+    restart: always
+    ports:
+      - "3308:3306"
+    networks:
+      - mysql-net
+
+  mysql-donor:
+    image: mysql:latest
+    container_name: mysql-donor
+    environment:
+      MYSQL_ROOT_PASSWORD: p123
+    restart: always
+    ports:
+      - "3307:3306"
+    networks:
+      - mysql-net
+
+networks:
+  mysql-net:
+    driver: bridge
