@@ -90,3 +90,79 @@
 2. Synchronous Replication
     1. Galera/PXC Cluster
 
+
+
+## Creating a Replica Using the Clone Plugin
+
+-------------on the donor container inside root user---------------------
+
+INSTALL PLUGIN CLONE SONAME "mysql_clone.so";
+CREATE USER clone_donor@'%' IDENTIFIED BY "pass";
+GRANT BACKUP_ADMIN ON *.* to clone_donor;
+GRANT SELECT ON donor_db .* TO clone_donor;
+GRANT EXECUTE ON *.* to clone_donor;
+
+
+
+
+CREATE DATABASE donor_db;
+CREATE TABLE users(ID INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), city VARCHAR(255));
+INSERT INTO users (name, city) VALUES ("Praveen", "Gaya");
+INSERT INTO users (name, city) VALUES ("Prateek", "Kota");
+
+
+
+--------------------Recipient container in root user-------
+
+ INSTALL PLUGIN CLONE SONAME "mysql_clone.so";
+SET GLOBAL clone_valid_donor_list = "mysql-donor:3306";
+ CREATE USER clone_recipient IDENTIFIED BY "pass";
+ GRANT CLONE_ADMIN ON *.* to clone_recipient;
+
+ GRANT SELECT ON donor_db.* TO clone_recipient;
+ GRANT EXECUTE ON *.* to clone_recipient;
+
+
+CREATE DATABASE recipient_root_db;
+CREATE TABLE users(ID INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), city VARCHAR(255));
+INSERT INTO users (name, city) VALUES ("Pratyush", "Gaya");
+INSERT INTO users (name, city) VALUES ("Prateek", "Tezpur");
+
+
+
+-------------start clone_recipient server---------
+
+CLONE INSTANCE FROM 'clone_donor'@'mysql-donor':3306 IDENTIFIED BY 'pass';
+
+Result on recipient side:
+
+mysql> SELECT user FROM mysql.user;
++------------------+
+| user             |
++------------------+
+| clone_donor      |
+| root             |
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| root             |
++------------------+
+6 rows in set (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| donor_db           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+
+-------------To confirm Replication-------
+
+
+ SELECT BINLOG_FILE, BINLOG_POSITION FROM donor_db.clone_status;
